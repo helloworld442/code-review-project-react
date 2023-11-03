@@ -1,0 +1,31 @@
+.hg-size-text {
+  color: rgb(56, 109, 227);
+}
+
+.hg-bold-text {
+  color: rgb(56, 109, 227);
+}
+
+.hg-cancel-text {
+  color: rgb(56, 109, 227);
+}
+
+.hg-size-code1 {
+  font-size: 1.6rem;
+}
+
+.hg-size-code2 {
+  font-size: 1.4rem;
+}
+
+.hg-size-code3 {
+  font-size: 1.2rem;
+}
+
+.hg-bold-code {
+  font-weight: 800;
+}
+
+.hg-cancel-code {
+  text-decoration: solid line-through #333 2px;
+}
