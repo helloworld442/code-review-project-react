@@ -8,17 +8,17 @@ const Category = ({ index }) => {
 
   return (
     <StCategory>
-      <Link to="/">
+      <Link to="/forem">
         <CategoryTitle onClick={() => setCategory(0)} $active={category === 0}>
           전체
         </CategoryTitle>
       </Link>
-      <Link to="/best">
+      <Link to="/forem/best">
         <CategoryTitle onClick={() => setCategory(1)} $active={category === 1}>
           인기글
         </CategoryTitle>
       </Link>
-      <Link to="/question">
+      <Link to="/forem/question">
         <CategoryTitle onClick={() => setCategory(2)} $active={category === 2}>
           답변중
         </CategoryTitle>
@@ -28,9 +28,9 @@ const Category = ({ index }) => {
 };
 
 const StCategory = styled.div`
-  flex: 2;
+  flex: 2.5;
   height: 500px;
-  margin-right: 72px;
+  margin-right: 12px;
   flex-direction: column;
   display: flex;
 
@@ -45,6 +45,7 @@ const StCategory = styled.div`
 
 const CategoryTitle = styled.h2`
   padding: 12px 0;
+  box-sizing: border-box;
   font-size: 1.4rem;
   font-weight: 550;
   color: rgb(64, 58, 107, 0.5);
@@ -55,7 +56,6 @@ const CategoryTitle = styled.h2`
     css`
       color: #333;
     `}
-
   @media ${device.tablet} {
     font-size: 1.2rem;
   }

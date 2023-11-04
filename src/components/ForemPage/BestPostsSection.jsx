@@ -24,6 +24,7 @@ const BestPostsSection = () => {
 
 const StBestPostsSection = styled.section`
   position: relative;
+  width: 100%;
   margin-bottom: 48px;
 `;
 

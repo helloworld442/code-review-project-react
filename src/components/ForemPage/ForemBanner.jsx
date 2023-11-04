@@ -4,7 +4,7 @@ import { ReactComponent as Earth2 } from "../../assets/earth-africa-solid.svg";
 import { ReactComponent as Earth3 } from "../../assets/earth-asia-solid.svg";
 import { useEffect, useState } from "react";
 
-const HomeBanner = () => {
+const ForemBanner = () => {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const HomeBanner = () => {
   const onClickRadio = (page) => setPage(page);
 
   return (
-    <StHomeBanner>
+    <StForemBanner>
       <BannerList>
         <BannerItem movePage={page} background="rgb(234, 252, 246)">
           <a href="/">
@@ -78,11 +78,12 @@ const HomeBanner = () => {
 
         <BannerRadio onClick={() => onClickRadio(2)} checked={page === 2} />
       </BannerRadios>
-    </StHomeBanner>
+    </StForemBanner>
   );
 };
 
-const StHomeBanner = styled.div`
+const StForemBanner = styled.div`
+  postion: relative;
   width: 100%;
   margin-bottom: 48px;
   overflow: hidden;
@@ -176,4 +177,4 @@ const BannerRadio = styled.button`
     `}
 `;
 
-export default HomeBanner;
+export default ForemBanner;

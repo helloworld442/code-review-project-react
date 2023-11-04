@@ -5,14 +5,7 @@ import { ReactComponent as Heart } from "../../assets/heart-solid.svg";
 import { useEffect, useState } from "react";
 
 const QuestionPost = ({ data }) => {
-  const [hightlightedCode, setHightlightedCode] = useState("");
-
-  useEffect(() => {
-    let hightcode = hljs.highlight(data.code, { language: "javascript" }).value;
-    hightcode = hightcode.replace(/" "/g, "&nbsp; ");
-
-    setHightlightedCode(hightcode);
-  }, [data.code]);
+  const [hightlightedCode, setHightlightedCode] = useHightlightCode(data.code);
 
   return (
     <StQuestionPost>
@@ -51,6 +44,19 @@ const QuestionPost = ({ data }) => {
     </StQuestionPost>
   );
 };
+
+function useHightlightCode(code) {
+  const [hightlightedCode, setHightlightedCode] = useState("");
+
+  useEffect(() => {
+    let hightcode = hljs.highlight(code, { language: "javascript" }).value;
+    hightcode = hightcode.replace(/" "/g, "&nbsp; ");
+
+    setHightlightedCode(hightcode);
+  }, [code]);
+
+  return [hightlightedCode, setHightlightedCode];
+}
 
 const StQuestionPost = styled.div`
   width: 100%;

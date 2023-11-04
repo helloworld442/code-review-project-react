@@ -1,11 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://ananbada.store:8080",
-  // baseURL: "http://localhost:3001",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // baseURL: "https://ananbada.store:8080",
+  baseURL: "http://localhost:3001",
 });
 
 instance.interceptors.request.use(

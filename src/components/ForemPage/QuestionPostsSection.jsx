@@ -30,6 +30,7 @@ const QuestionPostsSection = () => {
 
 const StQuestionPostsSection = styled.section`
   position: relative;
+  width: 100%;
   margin-bottom: 48px;
 `;
 

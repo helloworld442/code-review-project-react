@@ -1,11 +1,13 @@
 import styled, { css } from "styled-components";
 import { device } from "../../utils/_media";
-import useValidateUser from "../../stores/useValidateUser";
 import { useEffect, useState } from "react";
+import useAuthStore from "../../hooks/useAuthStore";
 
 const ValidateForm = ({ form, onChangeField }) => {
   const [seconds, setSeconds] = useState(300);
-  const { emailSuccess, emailCodeSuccess, onSendEmail, onCheckEmail } = useValidateUser();
+  const [snapshot, authStore] = useAuthStore();
+
+  const { emailSuccess, emailCodeSuccess } = snapshot;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,7 +29,7 @@ const ValidateForm = ({ form, onChangeField }) => {
       <ValidateFormTitle>이메일 인증</ValidateFormTitle>
 
       <ValidateFormContent>
-        <form onSubmit={(e) => onSendEmail(e, form)}>
+        <form onSubmit={(e) => authStore.postFetchEmail(e, form)}>
           <FormInputBox>
             <FormInputLabel>
               이메일 <span>*</span>
@@ -37,15 +39,15 @@ const ValidateForm = ({ form, onChangeField }) => {
               type="email"
               name="email"
               onChange={onChangeField}
-              disabled={emailCodeSuccess}
+              disabled={emailSuccess}
               placeholder="이메일을 입력하세요"
             />
 
-            <FormInputButton disabled={emailCodeSuccess}>인증받기</FormInputButton>
+            <FormInputButton disabled={emailSuccess}>인증받기</FormInputButton>
           </FormInputBox>
         </form>
 
-        <form onSubmit={(e) => onCheckEmail(e, form)}>
+        <form onSubmit={(e) => authStore.postFetchEmailCode(e, form)}>
           <FormInputBox>
             <FormInputLabel>
               이메일 인증 <span>*</span>

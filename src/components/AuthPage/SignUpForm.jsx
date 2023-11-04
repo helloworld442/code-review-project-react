@@ -1,12 +1,8 @@
 import styled from "styled-components";
-import { ReactComponent as Check } from "../../assets/check-solid.svg";
-import { ReactComponent as User } from "../../assets/user-regular.svg";
 import { device } from "../../utils/_media";
+import InfoForm from "./InfoForm";
 import ValidateForm from "./ValidateForm";
 import { useState } from "react";
-import InfoForm from "./InfoForm";
-import { useRecoilValue } from "recoil";
-import { emailCodeAtom } from "../../provider/recoil/atom";
 
 const SignUpForm = () => {
   const [form, setForm] = useState({
@@ -17,7 +13,6 @@ const SignUpForm = () => {
     skill: [],
   });
   const [error, setError] = useState({ nickname: "", password: "", skill: "" });
-  const emailCodeSuccess = useRecoilValue(emailCodeAtom);
 
   const onChangeField = (e) => {
     const { name, value } = e.target;
@@ -38,18 +33,6 @@ const SignUpForm = () => {
   return (
     <SignUpFormBox>
       <SignUpFormTitle>회원가입</SignUpFormTitle>
-
-      <SignUpFormProcess>
-        <span id={"validate" + (emailCodeSuccess ? " disabled" : "")}>
-          <Check />
-          <h5>인증절차</h5>
-        </span>
-
-        <span id={"info" + (emailCodeSuccess ? " active" : "")}>
-          <User />
-          <h5>입력절차</h5>
-        </span>
-      </SignUpFormProcess>
 
       <SignUpFormContent>
         <ValidateForm form={form} onChangeField={onChangeField} />
@@ -80,66 +63,6 @@ const SignUpFormTitle = styled.h1`
   padding-bottom: 18px;
   font-size: 2.2rem;
   text-align: center;
-`;
-
-const SignUpFormProcess = styled.div`
-  padding-top: 30px;
-  padding-bottom: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-
-  #validate,
-  #info {
-    display: inline-block;
-    width: 84px;
-    height: 84px;
-    border-radius: 100%;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: 550;
-    font-family: sans-serif;
-
-    svg {
-      width: 1.4rem;
-      height: 1.4rem;
-      fill: #888;
-    }
-
-    h5 {
-      margin-top: 12px;
-      font-size: 0.725rem;
-      font-weight: 550;
-      font-family: sans-serif;
-      color: #888;
-    }
-  }
-
-  #validate {
-    background: rgb(64, 58, 107, 1);
-    svg {
-      fill: #fff;
-    }
-
-    h5 {
-      color: #fff;
-    }
-  }
-
-  #disabled {
-    background: rgb(64, 58, 107, 0.8);
-    fill: #eee;
-  }
-
-  #active {
-    background: rgb(64, 58, 107, 1);
-    fill: #fff;
-  }
 `;
 
 const SignUpFormContent = styled.div`

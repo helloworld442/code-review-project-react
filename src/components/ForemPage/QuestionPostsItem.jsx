@@ -23,7 +23,7 @@ const StQuestionPostsItem = styled.li`
   height: 180px;
   padding: 24px 14px;
   box-sizing: border-box;
-  border: 2px solid #e8e8e8;
+  border: 2px solid #e1e3e7;
   border-radius: 4px;
 `;
 

@@ -72,7 +72,11 @@ const WriteForm = () => {
     reviewStore.postFetchData(form);
   };
 
-  if (snapshot.error) return <div>is Error</div>;
+  const onRefreshField = (e) => {
+    e.preventDefault();
+
+    window.location.reload();
+  };
 
   return (
     <StWriteForm onSubmit={onSubmitField}>
@@ -109,7 +113,7 @@ const WriteForm = () => {
       />
 
       <WriteFormButtons>
-        <Button size="medium" onClick={(e) => reviewStore.refreshFetchData(e)}>
+        <Button size="medium" onClick={onRefreshField}>
           취소
         </Button>
         <Button size="medium" primary="true" type="submit">

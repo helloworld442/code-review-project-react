@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { device } from "../../utils/_media";
 import { Category } from "../ui/Category";
-import QuestionBanner from "./QuestionBanner";
+import ForemBanner from "./ForemBanner";
+import BestPostsSection from "./BestPostsSection";
 import QuestionPostsSection from "./QuestionPostsSection";
 import CSSTransition from "../ui/CSSTranstion";
 import useReviewStore from "../../hooks/useReviewStore";
 import { useEffect } from "react";
 
-const Question = () => {
+const Forem = () => {
   const [snapshot, reviewStore] = useReviewStore();
 
   useEffect(() => {
@@ -18,21 +19,22 @@ const Question = () => {
 
   return (
     <CSSTransition>
-      <QuestionTemplate>
-        <QuestionCol>
-          <Category index={2} />
+      <ForemLayout>
+        <ForemCol>
+          <Category index={0} />
 
-          <QuestionBox>
-            <QuestionBanner />
+          <ForemBox>
+            <ForemBanner />
+            <BestPostsSection />
             <QuestionPostsSection />
-          </QuestionBox>
-        </QuestionCol>
-      </QuestionTemplate>
+          </ForemBox>
+        </ForemCol>
+      </ForemLayout>
     </CSSTransition>
   );
 };
 
-const QuestionTemplate = styled.main`
+const ForemLayout = styled.main`
   width: 100%;
   height: auto;
   background: #fff;
@@ -40,7 +42,7 @@ const QuestionTemplate = styled.main`
   justify-content: center;
 `;
 
-const QuestionCol = styled.div`
+const ForemCol = styled.div`
   width: 1150px;
   height: auto;
   margin-top: 80px;
@@ -55,7 +57,7 @@ const QuestionCol = styled.div`
   }
 `;
 
-const QuestionBox = styled.div`
+const ForemBox = styled.div`
   width: 980px;
   height: auto;
 
@@ -65,4 +67,4 @@ const QuestionBox = styled.div`
   }
 `;
 
-export default Question;
+export default Forem;

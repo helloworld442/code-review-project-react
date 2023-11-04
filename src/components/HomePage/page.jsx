@@ -1,36 +1,21 @@
 import styled from "styled-components";
 import { device } from "../../utils/_media";
-import { Category } from "../ui/Category";
-import HomeBanner from "./HomeBanner";
-import BestPostsSection from "./BestPostsSection";
-import QuestionPostsSection from "./QuestionPostsSection";
-import CSSTransition from "../ui/CSSTranstion";
-import useReviewStore from "../../hooks/useReviewStore";
-import { useEffect } from "react";
+import { HomeDashBoard } from "./HomeDashBoard";
+import { HomeUser } from "./HomeUser";
+import { HomeComment } from "./HomeComment";
 
 const Home = () => {
-  const [snapshot, reviewStore] = useReviewStore();
-
-  useEffect(() => {
-    reviewStore.getFetchData();
-
-    return () => reviewStore.resetFetchData();
-  }, []);
-
   return (
-    <CSSTransition>
-      <HomeLayout>
-        <HomeCol>
-          <Category index={0} />
+    <HomeLayout>
+      <HomeCol>
+        <HomeDashBoard />
 
-          <HomeBox>
-            <HomeBanner />
-            <BestPostsSection />
-            <QuestionPostsSection />
-          </HomeBox>
-        </HomeCol>
-      </HomeLayout>
-    </CSSTransition>
+        <HomeBox>
+          <HomeUser />
+          <HomeComment />
+        </HomeBox>
+      </HomeCol>
+    </HomeLayout>
   );
 };
 
@@ -48,7 +33,7 @@ const HomeCol = styled.div`
   margin-top: 80px;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   @media ${device.tablet} {
     width: 100%;
@@ -58,8 +43,14 @@ const HomeCol = styled.div`
 `;
 
 const HomeBox = styled.div`
-  flex: 3;
-  height: auto;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+
+  @media ${device.tablet} {
+    flex-direction: column;
+  }
 `;
 
 export default Home;

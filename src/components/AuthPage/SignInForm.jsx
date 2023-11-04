@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { device } from "../../utils/_media";
 import { Button } from "../ui/Button";
 import { useState } from "react";
-import { useLoginUser } from "../../stores/useAuthUser";
+import useAuthStore from "../../hooks/useAuthStore";
 
 const SignInForm = () => {
   const [form, setForm] = useState({ email: "", password: "" });
-  const [status, callback] = useLoginUser();
+  const [snapshot, authStore] = useAuthStore();
 
   const onChangeField = (e) => {
     const { name, value } = e.target;
@@ -16,7 +16,7 @@ const SignInForm = () => {
   const onSubmitField = (e) => {
     e.preventDefault();
 
-    callback(form);
+    authStore.postFetchLogin(form);
   };
 
   return (

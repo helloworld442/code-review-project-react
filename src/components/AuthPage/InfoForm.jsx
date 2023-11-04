@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { Select } from "../ui/Select";
 import { Button } from "../ui/Button";
-import { useRegisterUser } from "../../stores/useAuthUser";
-import { useRecoilValue } from "recoil";
-import { emailCodeAtom } from "../../provider/recoil/atom";
+import useAuthStore from "../../hooks/useAuthStore";
 
 const InfoForm = ({ form, error, setError, onChangeField, onAddSelect, onRemoveSelect }) => {
   const skills = form.skill.join(", ");
   const selectMenu = ["Spring", "React", "Java", "JavaScript"];
-  const emailCodeSuccess = useRecoilValue(emailCodeAtom);
-  const [status, callback, refresh] = useRegisterUser();
+  const [snapshot, authStore] = useAuthStore();
+
+  const { emailCodeSuccess } = snapshot;
 
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -45,7 +44,13 @@ const InfoForm = ({ form, error, setError, onChangeField, onAddSelect, onRemoveS
       return;
     }
 
-    callback(form);
+    authStore.postFetchRegister(form);
+  };
+
+  const onReloadField = (e) => {
+    e.preventDefault();
+
+    window.location.reload();
   };
 
   return (
@@ -100,7 +105,7 @@ const InfoForm = ({ form, error, setError, onChangeField, onAddSelect, onRemoveS
           </FormInputBox>
 
           <InfoFormButtons>
-            <Button size="medium" onClick={refresh}>
+            <Button size="medium" onClick={onReloadField}>
               취소
             </Button>
             <Button size="medium" primary="true" type="submit">

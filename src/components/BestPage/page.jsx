@@ -56,8 +56,13 @@ const BestCol = styled.div`
 `;
 
 const BestBox = styled.div`
-  flex: 21;
+  width: 980px;
   height: auto;
+
+  @media ${device.tablet} {
+    flex: 1;
+    width: auto;
+  }
 `;
 
 export default Best;

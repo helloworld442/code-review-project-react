@@ -10,6 +10,9 @@ const Header = () => {
         </h2>
         <ul className="header-nav-menu">
           <li className="header-nav-item">
+            <a href="/forem">커뮤니티</a>
+          </li>
+          <li className="header-nav-item">
             <a href="/write">글쓰기</a>
           </li>
           <li className="header-nav-item">
@@ -58,7 +61,7 @@ const StHeaderNav = styled.nav`
     color: #333;
     cursor: pointer;
 
-    &:nth-child(2) {
+    &:nth-child(3) {
       padding-right: 0;
     }
   }
