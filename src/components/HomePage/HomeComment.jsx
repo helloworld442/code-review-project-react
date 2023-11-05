@@ -64,10 +64,10 @@ const SectionContent = styled.div`
 `;
 
 const ContentTitle = styled.span`
-  padding: 12px 24px;
+  padding: 20px 0;
   box-sizing: border-box;
-  border: 1px solid #e1e3e7;
-  font-size: 1.4rem;
+  border-radius: 6px;
+  font-size: 1.2rem;
   font-weight: 200;
   color: rgb(64, 58, 107, 0.8);
   text-decoration: underline;
@@ -77,7 +77,9 @@ const ContentTitle = styled.span`
 
 const ContentMenu = styled.ul`
   padding: 36px 12px;
+  padding-bottom: 4px;
   margin: 12px;
+  margin-bottom: 0;
   box-sizing: border-box;
   border-left: 1px solid #e1e3e7;
 `;
@@ -85,9 +87,9 @@ const ContentMenu = styled.ul`
 const StCommentItem = styled.li`
   position: relative;
   width: 100%;
-  height: 150px;
+  min-height: 150px;
   padding: 12px;
-  margin: 30px 12px;
+  margin: 24px 12px;
   box-sizing: border-box;
   border: 2px solid #e8e8e8;
   border-radius: 6px;
@@ -111,7 +113,7 @@ const CommentItemPoint = styled.span`
   width: 0.825rem;
   height: 0.825rem;
   border-radius: 50%;
-  background: rgb(64, 58, 107, 0.8);
+  background: rgb(64, 58, 107, 1);
 `;
 
 const CommentItemEllipsis = styled(Ellipsis)`

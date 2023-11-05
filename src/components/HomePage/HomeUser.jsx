@@ -44,8 +44,9 @@ const SectionContent = styled.div`
   padding: 36px;
   margin-top: 20px;
   box-sizing: border-box;
-  border: 1px solid #e1e3e7;
-  border-radius: 4px;
+  border: 2px solid #e8e8e8;
+  border-radius: 0.5rem;
+  background: #fff;
   display: flex;
   justify-content: space-between;
   gap: 24px;

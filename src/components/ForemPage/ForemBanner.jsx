@@ -23,7 +23,7 @@ const ForemBanner = () => {
     <StForemBanner>
       <BannerList>
         <BannerItem movePage={page} background="rgb(234, 252, 246)">
-          <a href="/">
+          <a href="/forem">
             <div className="banner-left-item">
               <h3 className="item-title">코드 리뷰 별무리</h3>
               <h5 className="item-sub-title">
@@ -39,7 +39,7 @@ const ForemBanner = () => {
         </BannerItem>
 
         <BannerItem movePage={page} background="rgb(255, 241, 232)">
-          <a href="/best">
+          <a href="/forem/best">
             <div className="banner-left-item">
               <h3 className="item-title">코드 리뷰 인기글</h3>
               <h5 className="item-sub-title">
@@ -55,7 +55,7 @@ const ForemBanner = () => {
         </BannerItem>
 
         <BannerItem movePage={page} background="rgb(242, 236, 254)">
-          <a href="/question">
+          <a href="/forem/question">
             <div className="banner-left-item">
               <h3 className="item-title">코드 리뷰 Q&A</h3>
               <h5 className="item-sub-title">

@@ -22,7 +22,7 @@ const Home = () => {
 const HomeLayout = styled.main`
   width: 100%;
   height: auto;
-  background: #fff;
+  background: rgb(252, 252, 253);
   display: flex;
   justify-content: center;
 `;

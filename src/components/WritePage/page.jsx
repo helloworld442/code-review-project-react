@@ -28,7 +28,7 @@ const WriteCol = styled.div`
   margin-top: 100px;
   box-sizing: border-box;
   display: flex;
-  gap: 48px;
+  gap: 64px;
 
   @media ${device.tablet} {
     width: 100%;

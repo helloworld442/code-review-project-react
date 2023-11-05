@@ -5,21 +5,25 @@ import { useState } from "react";
 import { Button } from "../ui/Button";
 import WriteFormCode from "./WriteFormCode";
 import useReviewStore from "../../hooks/useReviewStore";
+import WriteFormTimer from "./WriteFormTimer";
 
 const WriteForm = () => {
   const [form, setForm] = useState({
     title: "",
-    problem: "",
-    question: "",
+    preKnow: "",
+    purpose: "",
     category: [],
+    minute: "",
+    second: "",
     code: "",
   });
 
   const [error, setError] = useState({
     title: "",
-    problem: "",
-    question: "",
+    preKnow: "",
+    purpose: "",
     code: "",
+    timer: "",
   });
 
   const [snapshot, reviewStore] = useReviewStore();
@@ -36,14 +40,19 @@ const WriteForm = () => {
     return "";
   };
 
-  const validateProblem = (problem) => {
-    if (problem.trim() === "") return "문제상황을 입력해주세요";
+  const validatePreKnow = (preKnow) => {
+    if (preKnow.trim() === "") return "문제상황을 입력해주세요";
     return "";
   };
 
-  const validateQuestion = (question) => {
-    if (question.trim() === "") return "궁금한 점을 업력해주세요";
+  const validatePurpose = (purpose) => {
+    if (purpose.trim() === "") return "궁금한 점을 업력해주세요";
     return "";
+  };
+
+  const validateTimer = (timer) => {
+    if (timer <= 0 || timer === null) return "시간을 입력해주세요";
+    return;
   };
 
   const onChangeField = (e) => {
@@ -54,16 +63,18 @@ const WriteForm = () => {
 
   const onSubmitField = (e) => {
     e.preventDefault();
+    const timerError = validateTimer(form.second);
     const titleError = validateTitle(form.title);
     const codeError = validateCode(form.code);
-    const problemError = validateProblem(form.problem);
-    const questionError = validateQuestion(form.question);
+    const preKnowError = validatePreKnow(form.preKnow);
+    const purposeError = validatePurpose(form.purpose);
 
-    if (titleError || codeError || problemError || questionError) {
+    if (titleError || codeError || preKnowError || purposeError || timerError) {
       setError({
+        timer: timerError,
         title: titleError,
-        problem: problemError,
-        question: questionError,
+        preKnow: preKnowError,
+        purpose: purposeError,
         code: codeError,
       });
       return;
@@ -78,14 +89,24 @@ const WriteForm = () => {
     window.location.reload();
   };
 
+  console.log(error);
+
   return (
     <StWriteForm onSubmit={onSubmitField}>
+      <WriteFormTimer
+        minute={form.minute}
+        second={form.second}
+        error={error.timer}
+        onChange={onChangeField}
+        label="시간을 입력해주세요"
+      />
+
       <WriteFormInput
         name="title"
         value={form.title}
         error={error.title}
         onChange={onChangeField}
-        label="제목을 입력하세요"
+        label="제목을 입력해주세요"
       />
 
       <WriteFormCode
@@ -93,23 +114,23 @@ const WriteForm = () => {
         value={form.code}
         error={error.code}
         onChange={onChangeField}
-        label="코드를 입력하세요"
+        label="코드를 입력해주세요"
       />
 
       <WriteFormTextArea
-        name="problem"
-        value={form.problem}
-        error={error.problem}
+        name="preKnow"
+        value={form.preKnow}
+        error={error.preKnow}
         onChange={onChangeField}
-        label="문제상황을 입력해주세요"
+        label="사전지식을 입력해주세요"
       />
 
       <WriteFormTextArea
-        name="question"
-        value={form.question}
-        error={error.question}
+        name="purpose"
+        value={form.purpose}
+        error={error.purpose}
         onChange={onChangeField}
-        label="궁금한점을 입력해주세요"
+        label="목적을 입력해주세요"
       />
 
       <WriteFormButtons>
@@ -125,7 +146,7 @@ const WriteForm = () => {
 };
 
 const StWriteForm = styled.form`
-  flex: 3;
+  width: 750px;
   margin: 36px 0;
   display: flex;
   flex-direction: column;
